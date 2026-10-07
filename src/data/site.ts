@@ -59,6 +59,55 @@ export const LINKS = {
 /** 12.55 MB —— 按 MiB 换算，和浏览器显示的体积一致 */
 export const APK_SIZE_LABEL = (APK_BYTES / 1024 / 1024).toFixed(1) + ' MB';
 
+/* ==========================================================================
+   主仓库规模快照
+
+   「谁做的」那张名片右侧的小仪表盘用这些数字。
+   规则同 site.ts 顶部：每一个数字都要能从主仓库查得到出处，
+   改这几个数字时顺手在 README 或提交里留一句依据，别让它变成玄学。
+   （下面这组是 2026-10 的一次快照，不是实时拉的 —— 页面不联网，也不埋点。）
+   ========================================================================== */
+
+/** 顶部五个大数字 */
+export const REPO_STATS = {
+  /** 主仓库当前 git tag（与 APP_VERSION 独立：App 版本和仓库进度不一定同步） */
+  tag: 'v2.9.0',
+  /** 跟踪文件数 */
+  files: 178,
+  /** 其中 src/ 下的文件数 */
+  filesInSrc: 142,
+  /** 代码行数（ts / tsx / css） */
+  lines: 42951,
+  /** 提交数 */
+  commits: 63,
+  /** 标签数 */
+  tags: 44,
+  /** 仓库工作区体积 */
+  size: '1.7 MB',
+  /** .git 目录体积 */
+  gitSize: '3.6 MB',
+} as const;
+
+/** 提交活跃度（按月）—— 柱状条，height 按最大值归一化 */
+export const COMMIT_MONTHS: { label: string; value: number; accent: 'pink' | 'cyan' | 'yellow' }[] = [
+  { label: '2026-07', value: 38, accent: 'cyan' },
+  { label: '2026-09', value: 1, accent: 'yellow' },
+  { label: '2026-10', value: 24, accent: 'pink' },
+];
+
+/** src/ 二级目录文件数 —— 横向条，value 为文件数 */
+export const SRC_DIRS: { label: string; value: number; accent: 'pink' | 'cyan' | 'yellow' | 'violet' | 'lime' | 'dim' }[] = [
+  { label: 'features', value: 73, accent: 'pink' },
+  { label: 'services', value: 29, accent: 'cyan' },
+  { label: 'components', value: 20, accent: 'yellow' },
+  { label: 'utils', value: 6, accent: 'violet' },
+  { label: 'stores', value: 5, accent: 'lime' },
+  { label: 'types', value: 3, accent: 'dim' },
+  { label: 'styles', value: 2, accent: 'dim' },
+  { label: 'app', value: 2, accent: 'dim' },
+  { label: 'config', value: 1, accent: 'dim' },
+];
+
 export type Uptime = {
   /** 整天天数 */
   days: number;
